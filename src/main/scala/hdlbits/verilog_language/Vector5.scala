@@ -5,7 +5,8 @@ import spinal.core.sim._
 import hdlbits.Config
 
 object VerilogHdlBitsVector5 extends App {
-  Config.spinal("Vector5.v") // set the output file name
+  Config
+    .spinal("Vector5.v") // set the output file name
     .generateVerilog(HdlBitsVector5())
 }
 

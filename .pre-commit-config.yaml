@@ -13,3 +13,11 @@ repos:
       - id: commitlint
         stages: [commit-msg]
         additional_dependencies: ['@commitlint/config-conventional']
+  - repo: local
+    hooks:
+      - id: scalafmt
+        name: Run Scalafmt
+        description: Formats Scala code using Scalafmt
+        entry: scalafmt
+        language: system
+        types: [scala]

@@ -5,12 +5,14 @@ import spinal.core.sim._
 import hdlbits.Config
 
 object VerilogHdlBitsModuleAddSub extends App {
-  Config.spinal("ModuleAddSub.v") // set the output file name
+  Config
+    .spinal("ModuleAddSub.v") // set the output file name
     .generateVerilog(HdlBitsModuleAddSub())
 }
 
 case class HdlBitsAdd16() extends Component {
   val io = new Bundle {
+
     val a, b = in Bits (16 bits)
     val cin = in Bool ()
     val sum = out Bits (16 bits)

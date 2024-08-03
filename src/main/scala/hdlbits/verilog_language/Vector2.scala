@@ -5,15 +5,16 @@ import spinal.core.sim._
 import hdlbits.Config
 
 object VerilogHdlBitsVector2 extends App {
-  Config.spinal("Vector2.v") // set the output file name
+  Config
+    .spinal("Vector2.v") // set the output file name
     .generateVerilog(HdlBitsVector2())
 }
 
 // https://hdlbits.01xz.net/wiki/Vector2
 case class HdlBitsVector2() extends Component {
   val io = new Bundle {
-    val inData = in UInt(32 bits)
-    val outData = out UInt(32 bits)
+    val inData = in UInt (32 bits)
+    val outData = out UInt (32 bits)
   }
 
   // Reversing the bytes
@@ -24,8 +25,12 @@ case class HdlBitsVector2() extends Component {
 
   // Set the name of the generated module name
   setDefinitionName("top_module")
-  
+
   // Explicitly set the names. Or else the names will have implicitly `io_` prefix
-  io.inData.setName("_in") // NOTE: cannot set the name to `in` which is reserved
-  io.outData.setName("_out") // NOTE: cannot set the name to `out` which is reserved
+  io.inData.setName(
+    "_in"
+  ) // NOTE: cannot set the name to `in` which is reserved
+  io.outData.setName(
+    "_out"
+  ) // NOTE: cannot set the name to `out` which is reserved
 }

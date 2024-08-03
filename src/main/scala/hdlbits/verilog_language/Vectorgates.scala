@@ -5,7 +5,8 @@ import spinal.core.sim._
 import hdlbits.Config
 
 object VerilogHdlBitsVectorGates extends App {
-  Config.spinal("VectorGates.v") // set the output file name
+  Config
+    .spinal("VectorGates.v") // set the output file name
     .generateVerilog(HdlBitsVectorGates())
 }
 
@@ -15,10 +16,10 @@ case class HdlBitsVectorGates() extends Component {
   setDefinitionName("top_module")
 
   val io = new Bundle {
-    val a, b = in Bits(3 bits)
-    val out_or_bitwise = out Bits(3 bits)
-    val out_or_logical = out Bool()
-    val out_not = out Bits(6 bits)
+    val a, b = in Bits (3 bits)
+    val out_or_bitwise = out Bits (3 bits)
+    val out_or_logical = out Bool ()
+    val out_not = out Bits (6 bits)
   }
 
   // Explicitly set the names. Or else the names will have implicitly `io_` prefix

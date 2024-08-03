@@ -5,14 +5,16 @@ import spinal.core.sim._
 import hdlbits.Config
 
 object VerilogHdlBitsDff8p extends App {
-  Config.spinal("Dff8p.v") // set the output file name
+  Config
+    .spinal("Dff8p.v") // set the output file name
     .generateVerilog(HdlBitsDff8p())
 }
 
 // https://hdlbits.01xz.net/wiki/Dff8p
 case class HdlBitsDff8p() extends Component {
   val io = new Bundle {
-    val clk = in Bool () // NOTE: How to write A dual-edge triggered flip-flop in SpinalHDL? For example: <https://hdlbits.01xz.net/wiki/Dualedge>
+    val clk =
+      in Bool () // NOTE: How to write A dual-edge triggered flip-flop in SpinalHDL? For example: <https://hdlbits.01xz.net/wiki/Dualedge>
     val reset = in Bool () // active high synchronous reset
     val d = in Bits (8 bits)
     val q = out Bits (8 bits)

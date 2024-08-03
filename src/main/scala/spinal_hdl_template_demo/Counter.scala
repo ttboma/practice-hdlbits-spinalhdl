@@ -9,7 +9,8 @@ class Counter extends Component {
 }
 
 object TestCounter extends App {
-  val spinalConfig = SpinalConfig(defaultClockDomainFrequency = FixedFrequency(10 MHz))
+  val spinalConfig =
+    SpinalConfig(defaultClockDomainFrequency = FixedFrequency(10 MHz))
 
   val compiled = SimConfig
     .withConfig(spinalConfig)

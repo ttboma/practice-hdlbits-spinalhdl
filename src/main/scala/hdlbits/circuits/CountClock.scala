@@ -5,7 +5,8 @@ import spinal.core.sim._
 import hdlbits.Config
 
 object VerilogHdlBitsCountClock extends App {
-  Config.spinal("CountClock.v") // set the output file name
+  Config
+    .spinal("CountClock.v") // set the output file name
     .generateVerilog(HdlBitsCountClock())
 }
 

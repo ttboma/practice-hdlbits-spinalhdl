@@ -5,7 +5,8 @@ import spinal.core.sim._
 import hdlbits.Config
 
 object VerilogHdlBitsCountbcd extends App {
-  Config.spinal("Countbcd.v") // set the output file name
+  Config
+    .spinal("Countbcd.v") // set the output file name
     .generateVerilog(HdlBitsCountbcd())
 }
 
@@ -64,14 +65,17 @@ case class HdlBitsCountbcd() extends Component {
     val q = out Bits (16 bits)
   }
 
-  val enable = Vec.fill(4)(Bool()) // Note: This has to be Vec. Got `COMBINATORIAL LOOP` if it is `Bits(4 bits)`
-  val digits = List.fill(4)(HdlBitsDecadeCount()) // Cannot use `Vec`. Please use `List`
+  val enable = Vec.fill(4)(
+    Bool()
+  ) // Note: This has to be Vec. Got `COMBINATORIAL LOOP` if it is `Bits(4 bits)`
+  val digits =
+    List.fill(4)(HdlBitsDecadeCount()) // Cannot use `Vec`. Please use `List`
 
   for (i <- 0 to 3) {
     digits(i).io.clk := io.clk
     digits(i).io.reset := io.reset
     digits(i).io.enable := enable(i)
-    io.q(i*4, 4 bits) := digits(i).io.q.asBits
+    io.q(i * 4, 4 bits) := digits(i).io.q.asBits
   }
 
   enable(0) := True
