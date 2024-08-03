@@ -10,6 +10,7 @@
 - [Practice with HDLBits](#practice-with-hdlbits-1)
 - [Developer's Note](#developers-note)
   - [How to start with Vscode and metal](#how-to-start-with-vscode-and-metal)
+  - [Pre-commit Hooks](#pre-commit-hooks)
   - [Trouble Shooting](#trouble-shooting)
     - [Installing OSS CAD Suite on Mac](#installing-oss-cad-suite-on-mac)
     - [Using X11 Forwarding on Mac](#using-x11-forwarding-on-mac)
@@ -157,6 +158,10 @@ code -a .
 and then execute metal vscode extension command: `metals.build-import`.
 You are good to go.
 
+## Pre-commit Hooks
+
+I choose to apply these [scala-pre-commit-hooks](https://github.com/softwaremill/scala-pre-commit-hooks). Make sure to run `pre-commit install` the first time cloning this project.
+
 ## Trouble Shooting
 
 ### Installing OSS CAD Suite on Mac
@@ -164,7 +169,7 @@ You are good to go.
 ```sh
 $ brew install xattr
 $ brew install cffi
-$ xattr -d com.apple.quarantine oss-cad-suite-darwin-arm64-20240516.tgz 
+$ xattr -d com.apple.quarantine oss-cad-suite-darwin-arm64-20240516.tgz
 $ tar -xzvf oss-cad-suite-darwin-arm64-20240516.tgz
 $ export PATH="<extracted_location>/oss-cad-suite/bin:$PATH"
 ```
