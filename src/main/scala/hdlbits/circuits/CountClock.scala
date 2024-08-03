@@ -2,15 +2,15 @@ package hdlbits.circuits
 
 import spinal.core._
 import spinal.core.sim._
+import hdlbits.Config
 
-object CountClockVerilog extends App {
-  Config.spinal
-    .copy(netlistFileName = "CountClock.v") // set the output file name
-    .generateVerilog(CountClock())
+object VerilogHdlBitsCountClock extends App {
+  Config.spinal("CountClock.v") // set the output file name
+    .generateVerilog(HdlBitsCountClock())
 }
 
 // https://hdlbits.01xz.net/wiki/Count_clock
-case class CountClock() extends Component {
+case class HdlBitsCountClock() extends Component {
   val io = new Bundle {
     val clk = in Bool ()
     val reset = in Bool () // active high synchronous reset
@@ -91,14 +91,14 @@ case class CountClock() extends Component {
   io.ss := myArea.ss1 ## myArea.ss0
 }
 
-object CountClock {
-  def apply(): CountClock = {
-    val rtl = new CountClock()
+object HdlBitsCountClock {
+  def apply(): HdlBitsCountClock = {
+    val rtl = new HdlBitsCountClock()
     setNames(rtl)
     rtl
   }
 
-  private def setNames(mod: CountClock) {
+  private def setNames(mod: HdlBitsCountClock) {
     mod.setDefinitionName("top_module")
     mod.io.elements.foreach { case (name, signal) =>
       signal.setName(name)

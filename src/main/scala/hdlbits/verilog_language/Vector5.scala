@@ -2,9 +2,15 @@ package hdlbits.verilog_language
 
 import spinal.core._
 import spinal.core.sim._
+import hdlbits.Config
+
+object VerilogHdlBitsVector5 extends App {
+  Config.spinal("Vector5.v") // set the output file name
+    .generateVerilog(HdlBitsVector5())
+}
 
 // https://hdlbits.01xz.net/wiki/Vector5
-case class HDLBitsVector5() extends Component {
+case class HdlBitsVector5() extends Component {
   val io = new Bundle {
     val input = Vec.fill(5)(in Bool ())
     val output = out Bits (25 bits)
@@ -13,14 +19,14 @@ case class HDLBitsVector5() extends Component {
   io.output := ~Cat((0 to 4).map(i => io.input(i) #* 5)) ^ (Cat(io.input) #* 5)
 }
 
-object HDLBitsVector5 {
-  def apply(): HDLBitsVector5 = {
-    val rtl = new HDLBitsVector5()
+object HdlBitsVector5 {
+  def apply(): HdlBitsVector5 = {
+    val rtl = new HdlBitsVector5()
     setNames(rtl)
     rtl
   }
 
-  private def setNames(mod: HDLBitsVector5): Unit = {
+  private def setNames(mod: HdlBitsVector5): Unit = {
     // Set the name of the generated module name
     mod.setDefinitionName("top_module")
 
@@ -34,10 +40,4 @@ object HDLBitsVector5 {
       "_out"
     ) // NOTE: cannot set the name to `out` which is reserved
   }
-}
-
-object HDLBitsVector5Verilog extends App {
-  Config.spinal
-    .copy(netlistFileName = "Vector5.v") // set the output file name
-    .generateVerilog(HDLBitsVector5())
 }

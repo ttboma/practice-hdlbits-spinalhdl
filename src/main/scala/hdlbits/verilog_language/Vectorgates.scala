@@ -2,9 +2,15 @@ package hdlbits.verilog_language
 
 import spinal.core._
 import spinal.core.sim._
+import hdlbits.Config
+
+object VerilogHdlBitsVectorGates extends App {
+  Config.spinal("VectorGates.v") // set the output file name
+    .generateVerilog(HdlBitsVectorGates())
+}
 
 // https://hdlbits.01xz.net/wiki/Vectorgates
-case class HDLBitsVectorgates() extends Component {
+case class HdlBitsVectorGates() extends Component {
   // Set the name of the generated module name
   setDefinitionName("top_module")
 
@@ -24,10 +30,4 @@ case class HDLBitsVectorgates() extends Component {
   io.out_or_logical := io.a.orR || io.b.orR
   io.out_not(2 downto 0) := ~io.a
   io.out_not(5 downto 3) := ~io.b
-}
-
-object HDLBitsVectorgatesVerilog extends App {
-  Config.spinal
-    .copy(netlistFileName = "Vectorgates.v") // set the output file name
-    .generateVerilog(HDLBitsVectorgates())
 }

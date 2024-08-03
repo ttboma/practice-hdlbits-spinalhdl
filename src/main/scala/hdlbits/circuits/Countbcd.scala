@@ -2,8 +2,14 @@ package hdlbits.circuits
 
 import spinal.core._
 import spinal.core.sim._
+import hdlbits.Config
 
-case class HDLBitsDecadeCount() extends Component {
+object VerilogHdlBitsCountbcd extends App {
+  Config.spinal("Countbcd.v") // set the output file name
+    .generateVerilog(HdlBitsCountbcd())
+}
+
+case class HdlBitsDecadeCount() extends Component {
   val io = new Bundle {
     val clk = in Bool ()
     val reset = in Bool () // active high synchronous reset
@@ -34,14 +40,14 @@ case class HDLBitsDecadeCount() extends Component {
   io.q := myArea.qNext
 }
 
-object HDLBitsDecadeCount {
-  def apply(): HDLBitsDecadeCount = {
-    val rtl = new HDLBitsDecadeCount()
+object HdlBitsDecadeCount {
+  def apply(): HdlBitsDecadeCount = {
+    val rtl = new HdlBitsDecadeCount()
     setNames(rtl)
     rtl
   }
 
-  private def setNames(mod: HDLBitsDecadeCount) {
+  private def setNames(mod: HdlBitsDecadeCount) {
     mod.setDefinitionName("decade_count")
     mod.io.elements.foreach { case (name, signal) =>
       signal.setName(name)
@@ -50,7 +56,7 @@ object HDLBitsDecadeCount {
 }
 
 // https://hdlbits.01xz.net/wiki/Countbcd
-case class HDLBitsCountbcd() extends Component {
+case class HdlBitsCountbcd() extends Component {
   val io = new Bundle {
     val clk = in Bool ()
     val reset = in Bool () // active high asynchronous reset
@@ -59,7 +65,7 @@ case class HDLBitsCountbcd() extends Component {
   }
 
   val enable = Vec.fill(4)(Bool()) // Note: This has to be Vec. Got `COMBINATORIAL LOOP` if it is `Bits(4 bits)`
-  val digits = List.fill(4)(HDLBitsDecadeCount()) // Cannot use `Vec`. Please use `List`
+  val digits = List.fill(4)(HdlBitsDecadeCount()) // Cannot use `Vec`. Please use `List`
 
   for (i <- 0 to 3) {
     digits(i).io.clk := io.clk
@@ -76,23 +82,17 @@ case class HDLBitsCountbcd() extends Component {
   io.ena := Cat(enable)(3 downto 1)
 }
 
-object HDLBitsCountbcd {
-  def apply(): HDLBitsCountbcd = {
-    val rtl = new HDLBitsCountbcd()
+object HdlBitsCountbcd {
+  def apply(): HdlBitsCountbcd = {
+    val rtl = new HdlBitsCountbcd()
     setNames(rtl)
     rtl
   }
 
-  private def setNames(mod: HDLBitsCountbcd) {
+  private def setNames(mod: HdlBitsCountbcd) {
     mod.setDefinitionName("top_module")
     mod.io.elements.foreach { case (name, signal) =>
       signal.setName(name)
     }
   }
-}
-
-object HDLBitsCountbcdVerilog extends App {
-  Config.spinal
-    .copy(netlistFileName = "Countbcd.v") // set the output file name
-    .generateVerilog(HDLBitsCountbcd())
 }

@@ -2,9 +2,15 @@ package hdlbits.verilog_language
 
 import spinal.core._
 import spinal.core.sim._
+import hdlbits.Config
+
+object VerilogHdlBitsVector3 extends App {
+  Config.spinal("Vector3.v") // set the output file name
+    .generateVerilog(HdlBitsVector3())
+}
 
 // https://hdlbits.01xz.net/wiki/Vector3
-case class HDLBitsVector3() extends Component {
+case class HdlBitsVector3() extends Component {
   val io = new Bundle {
     val input = Vec.fill(6)(in Bits (5 bits)) // NOTE: Use `Vec` instead of `Scala.List`
     val output = Vec.fill(4)(out Bits (8 bits))
@@ -29,10 +35,4 @@ case class HDLBitsVector3() extends Component {
   List("z", "y", "x", "w").zipWithIndex.foreach { case (name, idx) =>
     io.output(idx).setName(name)
   }
-}
-
-object HDLBitsVector3Verilog extends App {
-  Config.spinal
-    .copy(netlistFileName = "Vector3.v") // set the output file name
-    .generateVerilog(HDLBitsVector3())
 }

@@ -2,8 +2,14 @@ package hdlbits.verilog_language
 
 import spinal.core._
 import spinal.core.sim._
+import hdlbits.Config
 
-case class HDLBitsAdd16() extends Component {
+object VerilogHdlBitsModuleAddSub extends App {
+  Config.spinal("ModuleAddSub.v") // set the output file name
+    .generateVerilog(HdlBitsModuleAddSub())
+}
+
+case class HdlBitsAdd16() extends Component {
   val io = new Bundle {
     val a, b = in Bits (16 bits)
     val cin = in Bool ()
@@ -24,14 +30,14 @@ case class HDLBitsAdd16() extends Component {
     }
 }
 
-object HDLBitsAdd16 {
-  def apply(): HDLBitsAdd16 = {
-    val rtl = new HDLBitsAdd16()
+object HdlBitsAdd16 {
+  def apply(): HdlBitsAdd16 = {
+    val rtl = new HdlBitsAdd16()
     setNames(rtl)
     rtl
   }
 
-  private def setNames(mod: HDLBitsAdd16) {
+  private def setNames(mod: HdlBitsAdd16) {
     mod.setDefinitionName("add16")
     mod.io.elements.foreach { case (name, signal) =>
       signal.setName(name)
@@ -54,7 +60,7 @@ object HDLBitsAdd16 {
 //     add16 hi(a[31:16], inv_b[31:16], cout, sum[31:16], d);
 //
 // endmodule
-case class HDLBitsModuleAddSub() extends Component {
+case class HdlBitsModuleAddSub() extends Component {
   val io = new Bundle {
     val a, b = in Bits (32 bits)
     val sub = in Bool ()
@@ -66,7 +72,7 @@ case class HDLBitsModuleAddSub() extends Component {
 
   inv_b := io.b ^ (io.sub.asBits #* 32)
 
-  val lo, hi = HDLBitsAdd16()
+  val lo, hi = HdlBitsAdd16()
 
   lo.drive(
     io.a(15 downto 0),
@@ -85,23 +91,17 @@ case class HDLBitsModuleAddSub() extends Component {
   )
 }
 
-object HDLBitsModuleAddSub {
-  def apply(): HDLBitsModuleAddSub = {
-    val rtl = new HDLBitsModuleAddSub()
+object HdlBitsModuleAddSub {
+  def apply(): HdlBitsModuleAddSub = {
+    val rtl = new HdlBitsModuleAddSub()
     setNames(rtl)
     rtl
   }
 
-  private def setNames(mod: HDLBitsModuleAddSub) {
+  private def setNames(mod: HdlBitsModuleAddSub) {
     mod.setDefinitionName("top_module")
     mod.io.elements.foreach { case (name, signal) =>
       signal.setName(name)
     }
   }
-}
-
-object HDLBitsModuleAddSubVerilog extends App {
-  Config.spinal
-    .copy(netlistFileName = "ModuleAddSub.v") // set the output file name
-    .generateVerilog(HDLBitsModuleAddSub())
 }

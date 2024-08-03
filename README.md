@@ -8,9 +8,11 @@
   - [Why ScalaTest](#why-scalatest)
 - [Practice with HDLBits](#practice-with-hdlbits)
 - [Practice with HDLBits](#practice-with-hdlbits-1)
-- [Trouble Shooting](#trouble-shooting)
-  - [Installing OSS CAD Suite on Mac](#installing-oss-cad-suite-on-mac)
-  - [Using X11 Forwarding on Mac](#using-x11-forwarding-on-mac)
+- [Developer's Note](#developers-note)
+  - [How to start with Vscode and metal](#how-to-start-with-vscode-and-metal)
+  - [Trouble Shooting](#trouble-shooting)
+    - [Installing OSS CAD Suite on Mac](#installing-oss-cad-suite-on-mac)
+    - [Using X11 Forwarding on Mac](#using-x11-forwarding-on-mac)
 
 # Introduction to Scala and SpinalHDL: A Demonstration Project
 
@@ -142,9 +144,22 @@ The recommended order for checking out these demos is as follows:
 10. `spinal-hdl-demo/src/main/scala/spinal_hdl_template_demo/*`
 11. `/Users/shiehyuehchang/Desktop/spinal-hdl-demo/src/main/scala/other_demo/VaceCtrl.scala`
 
-# Trouble Shooting
+# Developer's Note
 
-## Installing OSS CAD Suite on Mac
+## How to start with Vscode and metal
+
+```sh
+git clone https://github.com/ttboma/spinalhdl-demo
+cd spinalhdl-demo
+code -a .
+```
+
+and then execute metal vscode extension command: `metals.build-import`.
+You are good to go.
+
+## Trouble Shooting
+
+### Installing OSS CAD Suite on Mac
 
 ```sh
 $ brew install xattr
@@ -154,6 +169,6 @@ $ tar -xzvf oss-cad-suite-darwin-arm64-20240516.tgz
 $ export PATH="<extracted_location>/oss-cad-suite/bin:$PATH"
 ```
 
-## Using X11 Forwarding on Mac
+### Using X11 Forwarding on Mac
 
 For instructions on using X11 forwarding on Mac, check out: [X11 Forwarding on Mac](https://www.cyberciti.biz/faq/apple-osx-mountain-lion-mavericks-install-xquartz-server/).

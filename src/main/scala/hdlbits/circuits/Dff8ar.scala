@@ -2,9 +2,15 @@ package hdlbits.circuits
 
 import spinal.core._
 import spinal.core.sim._
+import hdlbits.Config
+
+object VerilogHdlBitsDff8ar extends App {
+  Config.spinal("Dff8ar.v") // set the output file name
+    .generateVerilog(HdlBitsDff8ar())
+}
 
 // https://hdlbits.01xz.net/wiki/Dff8ar
-case class HDLBitsDff8ar() extends Component {
+case class HdlBitsDff8ar() extends Component {
   val io = new Bundle {
     val clk = in Bool()
     val areset = in Bool() // active high asynchronous reset
@@ -31,23 +37,17 @@ case class HDLBitsDff8ar() extends Component {
   }
 }
 
-object HDLBitsDff8ar {
-  def apply(): HDLBitsDff8ar = {
-    val rtl = new HDLBitsDff8ar()
+object HdlBitsDff8ar {
+  def apply(): HdlBitsDff8ar = {
+    val rtl = new HdlBitsDff8ar()
     setNames(rtl)
     rtl
   }
 
-  private def setNames(mod: HDLBitsDff8ar) {
+  private def setNames(mod: HdlBitsDff8ar) {
     mod.setDefinitionName("top_module")
     mod.io.elements.foreach { case (name, signal) =>
       signal.setName(name)
     }
   }
-}
-
-object HDLBitsDff8arVerilog extends App {
-  Config.spinal
-    .copy(netlistFileName = "Dff8ar.v") // set the output file name
-    .generateVerilog(HDLBitsDff8ar())
 }

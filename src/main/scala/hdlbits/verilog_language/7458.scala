@@ -2,9 +2,16 @@ package hdlbits.verilog_language
 
 import spinal.core._
 import spinal.core.sim._
+import hdlbits.Config
+
+object VerilogHdlBits7458 extends App {
+  Config
+    .spinal("7458.v")
+    .generateVerilog(HdlBits7458())
+}
 
 // https://hdlbits.01xz.net/wiki/7458
-case class HDLBits7458() extends Component {
+case class HdlBits7458() extends Component {
   val io = new Bundle {
     val p1a = in Bool ()
     val p1b = in Bool ()
@@ -30,10 +37,4 @@ case class HDLBits7458() extends Component {
   io.elements.foreach { case (name, signal) =>
     signal.setName(name)
   }
-}
-
-object HDLBits7458Verilog extends App {
-  Config.spinal
-    .copy(netlistFileName = "7458.v") // set the output file name
-    .generateVerilog(HDLBits7458())
 }
