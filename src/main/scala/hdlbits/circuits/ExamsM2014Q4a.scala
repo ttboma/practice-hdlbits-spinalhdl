@@ -7,7 +7,9 @@ import hdlbits.Config
 object VerilogHdlBitsExamsM2014Q4a extends App {
   Config
     .spinal("ExamsM2014Q4a.v") // set the output file name
-    .generateVerilog(HdlBitsExamsM2014Q4a().setDefinitionName("top_module"))
+    .generateVerilog(
+      HdlBitsExamsM2014Q4a().noIoPrefix().setDefinitionName("top_module")
+    )
 }
 
 // https://hdlbits.01xz.net/wiki/Exams/m2014_q4a
@@ -28,9 +30,6 @@ case class HdlBitsExamsM2014Q4a() extends Component {
   dLatch.io.D := io.d
   dLatch.io.enable := io.ena
   io.q := dLatch.io.Q
-
-  // Remove io_ prefix
-  noIoPrefix()
 }
 
 class HdlBitsDLatch extends BlackBox {
