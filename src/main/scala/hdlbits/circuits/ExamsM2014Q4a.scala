@@ -17,8 +17,10 @@ case class HdlBitsExamsM2014Q4a() extends Component {
     val q = out Bool ()
   }
 
-  // NOTE: SpinalHDL will check that no combinatorial signal will infer a latch in synthesis. In other words, that no combinatorial are partialy assigned.
-  //       So when we need to infer a latch, we need to use a blackbox, probably.
+  // NOTE: Latches are often considered problematic in combinational logic design.
+  //  SpinalHDL will check that no combinatorial signal will infer a latch in synthesis. In other words, that no combinatorial are partialy assigned.
+  //  It is not possible to directly instantiate a latch in SpinalHDL (Maybe).
+  //  So we use this opportunity to show how to instantiate a D Latch blackbox.
 
   // Instantiate the D Latch blackbox
   val dLatch = new HdlBitsDLatch()
