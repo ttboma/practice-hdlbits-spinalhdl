@@ -22,8 +22,6 @@ case class HdlBitsRule90() extends Component {
     val q = out Bits (512 bits)
   }
 
-  val regBoundary = B"2'b00"
-
   val clockRoot = new ClockingArea(
     ClockDomain(
       clock = io.clk,
@@ -34,8 +32,8 @@ case class HdlBitsRule90() extends Component {
   ) {
     val reg = Reg(Bits(512 bits))
 
-    reg(0) := regBoundary(0) ^ reg(1)
-    reg(511) := regBoundary(1) ^ reg(510)
+    reg(0) := False ^ reg(1)
+    reg(511) := False ^ reg(510)
 
     for (i <- 1 until 511) {
       reg(i) := reg(i - 1) ^ reg(i + 1)
