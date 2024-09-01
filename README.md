@@ -6,7 +6,6 @@
   - [Project Structure](#project-structure)
   - [Why Scala 2](#why-scala-2)
   - [Why ScalaTest](#why-scalatest)
-- [Practice with HDLBits](#practice-with-hdlbits)
 - [Developer's Note](#developers-note)
   - [How to start with Vscode and metal](#how-to-start-with-vscode-and-metal)
   - [Pre-commit Hooks](#pre-commit-hooks)
@@ -19,6 +18,14 @@
 This is a [Scala](https://scala-lang.org/)/[SpinalHDL](https://spinalhdl.github.io/SpinalDoc-RTD/master/index.html) demo project.
 
 Using Scala with SpinalHDL offers a powerful environment for hardware design. By leveraging the expressiveness of Scala, which combines object-oriented programming (OOP) and functional programming paradigms, designers can write high-level, maintainable hardware descriptions. SpinalHDL, as a Scala library, provides advanced features and abstractions that enhance the design process, leading to more efficient workflows and higher quality hardware systems.
+
+SpinalHDL has a steep learning curve. To get started, I recommend practicing how to write SpinalHDL code using this website: [HDLBits — Verilog Practice](https://hdlbits.01xz.net/wiki/Main_Page).
+
+I have included several practice solutions in the `src/main/scala/hdlbits` folder. The generated simulation files and Verilog files will be placed in the `gen` and `simWorkspace` folders.
+
+Please note that these solutions are not necessarily optimal, but rather intended to help you gradually work through the SpinalHDL language.
+
+Additionally, the SpinalHDL template, cloned using `git clone --depth 1 https://github.com/SpinalHDL/SpinalTemplateSbt.git MySpinalProject`, is located in the `src/main/scala/spinal_hdl_template_demo` directory. This setup demonstrates how to use SpinalHDL and verifies that the current configuration and project structure are compatible.
 
 For the fastest way to learn Scala and SpinalHDL, refer to the following documentation:
 
@@ -84,14 +91,6 @@ Because it has the most stability guarantee, and an another SpinalHDL project [V
 Another choice originally from the scala template is [MUnit](https://scalameta.org/munit/docs/getting-started.html). But it has no stability guarantees.
 
 Note that it is not realistic to do simulation with ScalaTest. To find out usage of ScalaTest, [VexRiscv](https://github.com/SpinalHDL/VexRiscv) is a good code-base to trace.
-
-# Practice with HDLBits
-
-SpinalHDL has a steep learning curve. To get started, I recommend practicing how to write SpinalHDL code using this website: [HDLBits — Verilog Practice](https://hdlbits.01xz.net/wiki/Main_Page).
-
-I have included several practice solutions in the `src/main/scala/hdlbits` folder. The generated simulation files and Verilog files will be placed in the `gen` and `simWorkspace` folders.
-
-Please note that these solutions are not necessarily optimal, but rather intended to help you gradually work through the SpinalHDL language.
 
 # Developer's Note
 
