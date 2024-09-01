@@ -7,7 +7,6 @@
   - [Why Scala 2](#why-scala-2)
   - [Why ScalaTest](#why-scalatest)
 - [Practice with HDLBits](#practice-with-hdlbits)
-- [Practice with HDLBits](#practice-with-hdlbits-1)
 - [Developer's Note](#developers-note)
   - [How to start with Vscode and metal](#how-to-start-with-vscode-and-metal)
   - [Pre-commit Hooks](#pre-commit-hooks)
@@ -32,11 +31,6 @@ And here is a great open-source RISC-V CPU that has been implemented completely 
 
 If you have any questions, you can always ask [ChatGPT](https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwj5hJDMiJSGAxW3H60GHce7A-gYABAAGgJwdg&ase=2&gclid=Cj0KCQjw3ZayBhDRARIsAPWzx8qvhglaeiNR6kJAEBZJ9F-kRDVmvjWMGAKgnNy-EqYfIrvo_BRSAxsaAuDgEALw_wcB&ei=WfpGZsXWA4vL1e8P2ISosA0&ohost=www.google.com&cid=CAESVeD2223mRSwrmwW2iyOazw9chgbsorNTgCQvBG76cFk5WkvwMrDWbz7UpDDbDrXMmNmQKxkENuhvdViYYXU5fW2yCSBLVcnv-YKifA58ieVXZjCk88I&sig=AOD64_1fSvmQ9XW4eZimIsHBHXt4vZb57g&q&sqi=2&nis=4&adurl&ved=2ahUKEwiF54XMiJSGAxWLZfUHHVgCCtYQ0Qx6BAgREAE).
 
-The documentation is organized using [mdBook](https://rust-lang.github.io/mdBook/index.html) and can be read on **Gitea**. After cloning this repository, you can also install mdBook (`cargo install mdbook`) and view the documentation locally by running `mdbook serve --open` in the root directory. Alternatively, if you're using VS Code, you can use an extension like [Web Preview](https://marketplace.visualstudio.com/items?itemName=JabedHossain.web-preview).
-
-The presentation for this documentation can be found in the `slides` folder and was created using [Marp](https://marp.app/#get-started) and can be previewed with tools such as the [Marp for VS Code](https://github.com/marp-team/marp-vscode) extension.
-And please check my presentation on 2024-5-24: [2024-5-24-introduction-to-spinalhdl](https://andesone.sharepoint.com/sites/Toolchain/_layouts/15/stream.aspx?id=%2Fsites%2FToolchain%2FShared%20Documents%2FGeneral%2FStudy%20Group%2F20240524%5Fintroduction%5Fto%5Fspinalhdl%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E27a8fce6%2Daa6c%2D4405%2D97bc%2D290f0c8702e7)
-
 ## Scala/SpinalHDL Environment Installation and Setup
 
 To install and setup Scala/SpinalHDL environment, please follow this page [Install and setup](https://spinalhdl.github.io/SpinalDoc-RTD/master/SpinalHDL/Getting%20Started/Install%20and%20setup.html). In this project, we demonstrate how to:
@@ -54,11 +48,9 @@ Please note that [Verilator](https://www.veripool.org/verilator/) and [Gtkwave](
 This project is based on the Scala template created with the command `sbt new scala/hello_world.g8`, which pulls a project template from GitHub. The following shows the structure of this project:
 
 - All Scala/SpinalHDL code is located in `src/main`, while unit tests are in `src/test`.
-- The generated simulation files and Verilog files will be placed in the `gen` and `simWorkspace` folders.
 - The `.bloop`, `.metals`, `.scalafmt.conf`, `.vscode`, `project`, `target`, and `tmp` folders are automatically created by VSCode and the [Scala (Metals)](https://scalameta.org/metals/docs/editors/vscode/) extension. These can be ignored.
 - The `.git` directory is created by Git. The `.gitignore` file is adapted from the [SpinalHDL template](https://github.com/SpinalHDL/SpinalTemplateSbt.git) with a few minor modifications.
-- The `book.toml` file contains [mdbook](https://rust-lang.github.io/mdBook/index.html) settings. The `book` directory is created by mdbook and can be ignored, while all documentation is in the `docs` folder.
-- The presentation slides and the video are located in the `docs/slides` folder.
+- The generated simulation files and Verilog files will be placed in the `gen` and `simWorkspace` folders.
 
 ```sh
 .
@@ -68,22 +60,14 @@ This project is based on the Scala template created with the command `sbt new sc
 ├── .metals
 ├── .scalafmt.conf
 ├── .vscode
-├── book
-├── book.toml
 ├── build.sbt
-├── docs
-│   └── slides
-├── gen
 ├── project
-├── simWorkspace
-├── slides
+│   └── build.properties
 ├── src
 │   ├── main
 │   │   └── scala
 │   └── test
 │       └── scala
-├── target
-└── tmp
 ```
 
 ## Why Scala 2
@@ -108,42 +92,6 @@ SpinalHDL has a steep learning curve. To get started, I recommend practicing how
 I have included several practice solutions in the `src/main/scala/hdlbits` folder. The generated simulation files and Verilog files will be placed in the `gen` and `simWorkspace` folders.
 
 Please note that these solutions are not necessarily optimal, but rather intended to help you gradually work through the SpinalHDL language.
-
-The recommended order for checking out these demos is as follows:
-
-1. `spinal-hdl-demo/src/main/scala/hdlbits/verilog_language/7458.scala`
-2. `spinal-hdl-demo/src/main/scala/hdlbits/verilog_language/Vectorgates.scala`
-3. `spinal-hdl-demo/src/main/scala/hdlbits/verilog_language/Vector2.scala`
-4. `spinal-hdl-demo/src/main/scala/hdlbits/verilog_language/Vector3.scala`
-5. `spinal-hdl-demo/src/main/scala/hdlbits/verilog_language/Vector5.scala`
-6. `spinal-hdl-demo/src/main/scala/hdlbits/verilog_language/ModuleAddSub.scala`
-7. `spinal-hdl-demo/src/main/scala/hdlbits/circuits/Dff8ar.scala`
-8. `spinal-hdl-demo/src/main/scala/hdlbits/circuits/Dff8p.scala`
-9. `spinal-hdl-demo/src/main/scala/hdlbits/circuits/Countbcd.scala`
-10. `spinal-hdl-demo/src/main/scala/spinal_hdl_template_demo/*`
-11. `/Users/shiehyuehchang/Desktop/spinal-hdl-demo/src/main/scala/other_demo/VaceCtrl.scala`
-
-# Practice with HDLBits
-
-SpinalHDL has a steep learning curve. To get started, I recommend practicing how to write SpinalHDL code using this website: [HDLBits — Verilog Practice](https://hdlbits.01xz.net/wiki/Main_Page).
-
-I have included several practice solutions in the `src/main/scala/hdlbits` folder. The generated simulation files and Verilog files will be placed in the `gen` and `simWorkspace` folders.
-
-Please note that these solutions are not necessarily optimal, but rather intended to help you gradually work through the SpinalHDL language.
-
-The recommended order for checking out these demos is as follows:
-
-1. `spinal-hdl-demo/src/main/scala/hdlbits/verilog_language/7458.scala`
-2. `spinal-hdl-demo/src/main/scala/hdlbits/verilog_language/Vectorgates.scala`
-3. `spinal-hdl-demo/src/main/scala/hdlbits/verilog_language/Vector2.scala`
-4. `spinal-hdl-demo/src/main/scala/hdlbits/verilog_language/Vector3.scala`
-5. `spinal-hdl-demo/src/main/scala/hdlbits/verilog_language/Vector5.scala`
-6. `spinal-hdl-demo/src/main/scala/hdlbits/verilog_language/ModuleAddSub.scala`
-7. `spinal-hdl-demo/src/main/scala/hdlbits/circuits/Dff8ar.scala`
-8. `spinal-hdl-demo/src/main/scala/hdlbits/circuits/Dff8p.scala`
-9. `spinal-hdl-demo/src/main/scala/hdlbits/circuits/Countbcd.scala`
-10. `spinal-hdl-demo/src/main/scala/spinal_hdl_template_demo/*`
-11. `/Users/shiehyuehchang/Desktop/spinal-hdl-demo/src/main/scala/other_demo/VaceCtrl.scala`
 
 # Developer's Note
 
