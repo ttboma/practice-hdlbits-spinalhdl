@@ -16,7 +16,7 @@ object VerilogHdlBitsExamsEce2412013Q4 extends App {
 case class HdlBitsExamsEce2412013Q4() extends Component {
   val io = new Bundle {
     val clk = in Bool ()
-    val reset = in Bool () // Synchronous reset to state A
+    val reset = in Bool () // Synchronous reset
     val s = in UInt (3 bits)
     val fr3 = out Bool ()
     val fr2 = out Bool ()
