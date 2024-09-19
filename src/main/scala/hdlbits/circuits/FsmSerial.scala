@@ -13,7 +13,7 @@ object VerilogHdlBitsFsmSerial extends App {
 }
 
 object HdlBitsFsmSerialState extends SpinalEnum {
-  val idle, start, data, stop = newElement()
+  val idle, start, stop = newElement()
 }
 
 import HdlBitsFsmSerialState._
