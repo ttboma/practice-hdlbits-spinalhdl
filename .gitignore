@@ -50,3 +50,5 @@ null
 book
 .DS_Store
 .DS_St
+
+.scalafmt.conf
