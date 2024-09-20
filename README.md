@@ -3,6 +3,7 @@
 - [Table of Content](#table-of-content)
 - [Introduction to Scala and SpinalHDL: A Demonstration Project](#introduction-to-scala-and-spinalhdl-a-demonstration-project)
   - [Scala/SpinalHDL Environment Installation and Setup](#scalaspinalhdl-environment-installation-and-setup)
+  - [Windows](#windows)
   - [Project Structure](#project-structure)
   - [Why Scala 2](#why-scala-2)
   - [Why ScalaTest](#why-scalatest)
@@ -49,6 +50,60 @@ To install and setup Scala/SpinalHDL environment, please follow this page [Insta
 - Perform formal verification with the open-source [Symbi-Yosys](https://github.com/YosysHQ/oss-cad-suite-build) toolchain.
 
 Please note that [Verilator](https://www.veripool.org/verilator/) and [Gtkwave](https://gtkwave.sourceforge.net/) are included in the [Symbi-Yosys](https://github.com/YosysHQ/oss-cad-suite-build) suite. For instance, I downloaded the [oss-cad-suite-darwin-arm64-20240521.tgz](https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2024-05-21/oss-cad-suite-darwin-arm64-20240521.tgz) and used the following commands:
+
+## Windows
+
+Refer to <https://www.chisel-lang.org/docs/installation>:
+
+1. Install scoop
+2. Install Java Development Kit (JDK), SBT, python and pipx using scoop
+
+    ```powershell
+    scoop install temurin17-jdk
+    brew install sbt
+    scoop install main/python
+    scoop install main/pipx
+    ```
+
+3. To check all installed applications via Scoop, you can use the following command:
+
+    ```powershell
+    > scoop list
+    Installed apps:
+
+    Name          Version   Source Updated             Info
+    ----          -------   ------ -------             ----
+    dark          3.14      main   2024-09-19 14:15:46
+    pipx          1.7.1     main   2024-09-19 14:08:42
+    python        3.12.6    main   2024-09-19 14:16:18
+    sbt           1.10.0    main   2024-08-29 17:45:36
+    temurin17-jdk 17.0.12-7 java   2024-09-19 13:54:47
+    ```
+
+4. Install pre-commit using pipx. Since pre-commit is installed under `C:\Users\Johns575\.local\bin`, remember to append to `$env:Path` variable
+
+    ```powershell
+    > pipx install pre-commit
+    > pipx list
+    venvs are in C:\Users\Johns575\pipx\venvs
+    apps are exposed on your $PATH at C:\Users\Johns575\.local\bin
+    manual pages are exposed at C:\Users\Johns575\.local\share\man
+        package pre-commit 3.8.0, installed using Python 3.12.6
+        - pre-commit.exe
+    ```
+
+5. Refers to <https://get-coursier.io/docs/cli-installation>, do the following:
+
+    ```powershell
+    # PowerShell
+    > Invoke-WebRequest -Uri "https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-win32.zip" -OutFile "cs-x86_64-pc-win32.zip"
+    > Expand-Archive -Path "cs-x86_64-pc-win32.zip" -DestinationPath .
+    > Rename-Item -Path "cs-x86_64-pc-win32.exe" -NewName "cs.exe"
+    > Remove-Item -Path "cs-x86_64-pc-win32.zip"
+    .\cs setup
+    ```
+
+    this should append `C:\Users\Johns575\AppData\Local\Coursier\data\bin` to `$env:Path`, where Scala development environment is installed (including cs, scala-cli, scala, scalac, sbt, scalafmt, ..), restart vscode and you will see it.
 
 ## Project Structure
 
